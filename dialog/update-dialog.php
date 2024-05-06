@@ -33,7 +33,7 @@
                      <div class="modal-footer">
                          <button type="button" class="text-secondary btn btn-secondary btn-light" data-dismiss="modal"
                              aria-label="Close" @click="closeDialog">ปิด</button>
-                         <button type="submit" class="btn btn-primary">เเก้ไข</button>
+                         <button type="submit" class="btn btn-warning">เเก้ไข</button>
                      </div>
                  </form>
              </div>

@@ -13,8 +13,8 @@
                      {{showObj.body}}
                  </div>
                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary btn-light text-secondary"
-                         data-bs-dismiss="modal">ปิด</button>
+                     <button type="button" class="btn btn-secondary btn-light text-secondary" data-dismiss="modal"
+                         aria-label="Close" @click="closeDialog">ปิด</button>
                      <!-- <button type="button" class="btn btn-danger">ลบ</button> -->
                  </div>
              </div>

@@ -7,15 +7,11 @@
      <meta http-equiv="X-UA-Compatible" content="ie=edge">
      <meta name="Description" content="Enter your description here" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
      <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
      <!-- Option 1: Include in HTML -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <title>PHP MySqli Vuejs</title>
  </head>
@@ -23,8 +19,6 @@
  <body>
 
      <?php include('./db/connectDB.php'); ?>
-
-
      <div id="app" class="container my-5">
          <h1 class="text-secondary "><span class="text-primary">PHP</span> <span class="text-danger">MySqli</span> and
              <span class="text-success">Vue</span> CDN <span class="text-primary">Crud</span>
@@ -89,39 +83,39 @@
          createApp,
          ref,
          onMounted
-     } = Vue
+     } = Vue;
      createApp({
          setup() {
-             const modalDelete = ref(null)
-             const posts = ref([])
+             const modalDelete = ref(null);
+             const posts = ref([]);
              const initState = {
                  title: null,
                  userId: null,
-                 body: null
-             }
+                 body: null,
+             };
              const formState = ref({
-                 ...initState
-             })
+                 ...initState,
+             });
              const showObj = ref({
                  id: 0,
-                 title: '',
+                 title: "",
                  userId: 0,
-                 body: ''
-             })
+                 body: "",
+             });
              const fetchData = async () => {
                  try {
-                     const apiUrl = './api/posts/get-posts.php'
+                     const apiUrl = "./api/posts/get-posts.php";
                      const {
-                         data,
-                     } = await axios.get(apiUrl)
-                     posts.value = data
+                         data
+                     } = await axios.get(apiUrl);
+                     posts.value = data;
                  } catch (error) {
                      console.error(error);
                  }
-             }
+             };
              const openDialog = (item) => {
-                 showObj.value = item
-             }
+                 showObj.value = item;
+             };
 
              const onCreateSubmit = () => {
                  for (const key in formState.value) {
@@ -131,15 +125,15 @@
                              Swal.fire({
                                  icon: "error",
                                  title: "กรุณากรอกข้อมูลให้ครบถ้วน",
-                                 confirmButtonText: "ปิด"
-                             })
-                             return false
+                                 confirmButtonText: "ปิด",
+                             });
+                             return false;
                          }
                      }
                  }
                  //END FOR
-                 createData()
-             }
+                 createData();
+             };
              onUpdateSubmit = () => {
                  for (const key in formState.value) {
                      if (Object.hasOwnProperty.call(formState.value, key)) {
@@ -148,126 +142,126 @@
                              Swal.fire({
                                  icon: "error",
                                  title: "กรุณากรอกข้อมูลให้ครบถ้วน",
-                                 confirmButtonText: "ปิด"
-                             })
-                             return false
+                                 confirmButtonText: "ปิด",
+                             });
+                             return false;
                          }
                      }
                  }
                  //END FOR
-                 updateData()
-             }
+                 updateData();
+             };
              const updateData = async () => {
                  try {
-                     const apiUrl = `./api/posts/update-posts.php?id=${formState.value.id}`
+                     const apiUrl = `./api/posts/update-posts.php?id=${formState.value.id}`;
                      const {
                          data,
                          status
-                     } = await axios.put(apiUrl, formState.value)
+                     } = await axios.put(apiUrl, formState.value);
                      if (status !== 200) {
                          console.error("เกิดข้อผิดพลาดในการเเก้ไขข้อมูล");
                          Swal.fire({
                              icon: "error",
                              title: "เกิดข้อผิดพลาดในการเเก้ไขข้อมูล",
-                             confirmButtonText: "ปิด"
-                         })
+                             confirmButtonText: "ปิด",
+                         });
                      }
-                     formState.value = initState
-                     posts.value[formState.value.id] = data.data
+                     formState.value = initState;
+                     posts.value[formState.value.id] = data.data;
                      Swal.fire({
                          position: "center",
                          icon: "success",
                          title: "เเก้ไขข้อมูลเรียบร้อย",
                          showConfirmButton: false,
-                         timer: 1500
-                     })
-                     $('#updateModal').modal('hide')
+                         timer: 1500,
+                     });
+                     $("#updateModal").modal("hide");
                  } catch (error) {
                      console.error(error);
                      Swal.fire({
                          icon: "error",
                          title: "เกิดข้อผิดพลาดในการเเก้ไขข้อมูล",
-                         confirmButtonText: "ปิด"
-                     })
+                         confirmButtonText: "ปิด",
+                     });
                  }
-             }
+             };
              const createData = async () => {
                  try {
-                     const apiUrl = './api/posts/create-posts.php'
+                     const apiUrl = "./api/posts/create-posts.php";
                      const {
                          data,
                          status
-                     } = await axios.post(apiUrl, formState.value)
+                     } = await axios.post(apiUrl, formState.value);
                      if (status !== 200) {
                          console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
                          Swal.fire({
                              icon: "error",
                              title: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
-                             confirmButtonText: "ปิด"
-                         })
+                             confirmButtonText: "ปิด",
+                         });
                      }
-                     formState.value = initState
-                     posts.value.unshift(data.data)
+                     formState.value = initState;
+                     posts.value.unshift(data.data);
                      Swal.fire({
                          position: "center",
                          icon: "success",
                          title: "บันทึกข้อมูลเรียบร้อย",
                          showConfirmButton: false,
-                         timer: 1500
-                     })
-                     $('#createModal').modal('hide')
-
+                         timer: 1500,
+                     });
+                     $("#createModal").modal("hide");
                  } catch (error) {
                      console.error(error);
                      Swal.fire({
                          icon: "error",
                          title: "เกิดข้อผิดพลาดในการบันทึกข้อมูล",
-                         confirmButtonText: "ปิด"
-                     })
+                         confirmButtonText: "ปิด",
+                     });
                  }
-             }
+             };
              const deleteItem = async (id) => {
                  try {
                      const {
                          data,
                          status
-                     } = await axios.delete(`./api/posts/delete-posts.php?id=${id}`)
+                     } = await axios.delete(
+                         `./api/posts/delete-posts.php?id=${id}`
+                     );
                      if (status !== 200) {
                          console.error("เกิดข้อผิดพลาดในการลบข้อมูล");
                          Swal.fire({
                              icon: "error",
                              title: "เกิดข้อผิดพลาดในการลบข้อมูล",
-                             confirmButtonText: "ปิด"
+                             confirmButtonText: "ปิด",
                          });
-                         return false
+                         return false;
                      }
-                     posts.value = posts.value.filter(item => item.id !== id)
+                     posts.value = posts.value.filter((item) => item.id !== id);
                      Swal.fire({
                          position: "center",
                          icon: "success",
                          title: "ลบข้อมูลเรียบร้อย",
                          showConfirmButton: false,
-                         timer: 1500
+                         timer: 1500,
                      });
-                     $('#deleteModal').modal('hide')
-
+                     $("#deleteModal").modal("hide");
                  } catch (error) {
                      console.error(error);
                      Swal.fire({
                          icon: "error",
                          title: "เกิดข้อผิดพลาดในการลบข้อมูล",
-                         confirmButtonText: "ปิด"
+                         confirmButtonText: "ปิด",
                      });
                  }
-             }
+             };
              const closeDialog = () => {
                  formState.value = {
-                     ...initState
-                 }
-             }
+                     ...initState,
+                 };
+             };
              onMounted(() => {
-                 fetchData()
-             })
+                 fetchData();
+             });
              return {
                  fetchData,
                  posts,
@@ -279,10 +273,10 @@
                  onCreateSubmit,
                  onUpdateSubmit,
                  updateData,
-                 closeDialog
-             }
-         }
-     }).mount('#app')
+                 closeDialog,
+             };
+         },
+     }).mount("#app");
      </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
