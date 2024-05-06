@@ -7,9 +7,7 @@
      <meta http-equiv="X-UA-Compatible" content="ie=edge">
      <meta name="Description" content="Enter your description here" />
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-     <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-     <!-- Option 1: Include in HTML -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -18,7 +16,6 @@
 
  <body>
 
-     <?php include('./db/connectDB.php'); ?>
      <div id="app" class="container my-5">
          <h1 class="text-secondary "><span class="text-primary">PHP</span> <span class="text-danger">MySqli</span> and
              <span class="text-success">Vue</span> CDN <span class="text-primary">Crud</span>
